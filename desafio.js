@@ -120,7 +120,7 @@ const desafio = () => {
 
          return
       }
-      while (somaDoBaralho(cartasDoComputador) <= somaDoBaralho(cartasDoUsuario)) {
+      while (somaDoBaralho(cartasDoComputador) < somaDoBaralho(cartasDoUsuario)) {
          cartasDoComputador.push(testeComprarCarta())
 
          if (somaDoBaralho(cartasDoComputador) == 21) {
@@ -133,6 +133,12 @@ const desafio = () => {
             alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
                `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
                `O usuário ganhou!`)
+
+            return
+         } else if(somaDoBaralho(cartasDoComputador) == somaDoBaralho(cartasDoUsuario)) {
+            alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Empate!`)
 
             return
          }
