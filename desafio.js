@@ -50,6 +50,7 @@ const somaDoBaralho = (baralho) => {
    return somaDoBaralho
 }
 
+
 let cartasDoUsuario = []
 let cartasDoComputador = []
 let cartasJaSorteadas = []
@@ -60,6 +61,8 @@ const desafio = () => {
    if (confirm("Quer iniciar uma nova rodada?")) {
       cartasDoUsuario.push(testeComprarCarta(), testeComprarCarta())
       cartasDoComputador.push(testeComprarCarta(), testeComprarCarta())
+
+
 
       if (somaDoBaralho(cartasDoUsuario) == 22) {
          cartasDoUsuario.splice(0, 2)
@@ -73,20 +76,29 @@ const desafio = () => {
 
       if (somaDoBaralho(cartasDoUsuario) == 21) {
          alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
             `O usuario ganhou!`)
 
-            return
+         return
       }
 
       if (somaDoBaralho(cartasDoComputador) == 21) {
          alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
             `O computador ganhou!`)
 
-            return
+         return
       }
 
+      if (somaDoBaralho(cartasDoComputador) == 21 && somaDoBaralho(cartasDoUsuario) == 21) {
+         alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Empate!`)
+
+         return
+      }
+
+      console.log(cartasJaSorteadas)
 
       if (confirm(`Suas cartas são ${lerOTextoDoBaralho(cartasDoUsuario)}. A carta relevada do computador é ${cartasDoComputador[0].texto}. \nDeseja comprar mais uma carta?`)) {
          while (somaDoBaralho(cartasDoUsuario) < 21) {
@@ -95,50 +107,70 @@ const desafio = () => {
 
             if (somaDoBaralho(cartasDoUsuario) == 21) {
                alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-                  `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+                  `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
                   `O usuario ganhou!`)
 
                return
 
             } else if (somaDoBaralho(cartasDoUsuario) > 21) {
                alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-                  `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+                  `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
                   `O computador ganhou!`)
 
                return
             }
 
-             if (!confirm(`Suas cartas agora são ${lerOTextoDoBaralho(cartasDoUsuario)} . A carta relevada do computador é ${cartasDoComputador[0].texto}. \nDeseja comprar mais uma carta?`)) {
+            if (!confirm(`Suas cartas agora são ${lerOTextoDoBaralho(cartasDoUsuario)} . A carta relevada do computador é ${cartasDoComputador[0].texto}. \nDeseja comprar mais uma carta?`)) {
 
+               if ((somaDoBaralho(cartasDoUsuario) < somaDoBaralho(cartasDoComputador)) && somaDoBaralho(cartasDoComputador) < 21) {
+                  alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
+                     `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
+                     `O computador ganhou!`)
+
+                     return
+               }else if (somaDoBaralho(cartasDoComputador) == somaDoBaralho(cartasDoUsuario)) {
+                  alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
+                     `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
+                     `Empate!`)
+         
+                  return
+               }
+               // console.log(cartasJaSorteadas)
                break
-             }
+            }
          }
       } else if (somaDoBaralho(cartasDoComputador) > somaDoBaralho(cartasDoUsuario)) {
          alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
             `O computador ganhou!`)
+
+         return
+      } else if (somaDoBaralho(cartasDoComputador) == somaDoBaralho(cartasDoUsuario)) {
+         alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
+            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
+            `Empate!`)
 
          return
       }
       while (somaDoBaralho(cartasDoComputador) < somaDoBaralho(cartasDoUsuario)) {
          cartasDoComputador.push(testeComprarCarta())
 
-         if (somaDoBaralho(cartasDoComputador) == 21) {
+         if (somaDoBaralho(cartasDoComputador) == 21 || (somaDoBaralho(cartasDoComputador) > somaDoBaralho(cartasDoUsuario) && somaDoBaralho(cartasDoComputador) <= 21)) {
             alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-               `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+               `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
                `O computador ganhou!`)
 
             return
          } else if (somaDoBaralho(cartasDoComputador) > 21) {
             alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-               `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
+               `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
                `O usuário ganhou!`)
 
             return
-         } else if(somaDoBaralho(cartasDoComputador) == somaDoBaralho(cartasDoUsuario)) {
+         } else if (somaDoBaralho(cartasDoComputador) == somaDoBaralho(cartasDoUsuario)) {
             alert(`Usuario - Cartas: ${lerOTextoDoBaralho(cartasDoUsuario)} - Pontuação: ${somaDoBaralho(cartasDoUsuario)} \n ` +
-            `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontução: ${somaDoBaralho(cartasDoComputador)} \n` +
-            `Empate!`)
+               `Computador - Cartas: ${lerOTextoDoBaralho(cartasDoComputador)} - Pontuação: ${somaDoBaralho(cartasDoComputador)} \n` +
+               `Empate!`)
 
             return
          }
